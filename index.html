@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#070d19" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>PuckLine — NHL Career Points Timeline</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-ice: #070d19;
+      --surface-slate: #0f172a;
+      --accent-cyan: #38bdf8;
+      --accent-gold: #fbbf24;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-ice);
+      color: #f8fafc;
+      overflow-x: hidden;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
+        radial-gradient(circle at 85% 90%, rgba(251, 191, 36, 0.08) 0%, transparent 45%),
+        linear-gradient(180deg, #070d19 0%, #0b1324 100%);
+    }
+
+    .font-display {
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    /* Ice rink center red/blue stripe motif */
+    .rink-stripe {
+      background: repeating-linear-gradient(
+        90deg,
+        #ef4444 0px,
+        #ef4444 18px,
+        #f8fafc 18px,
+        #f8fafc 24px,
+        #0284c7 24px,
+        #0284c7 42px,
+        #f8fafc 42px,
+        #f8fafc 48px
+      );
+    }
+
+    /* Custom Horizontal Timeline Scrollbar */
+    .timeline-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.35) rgba(15, 23, 42, 0.6);
+      scroll-behavior: smooth;
+    }
+    .timeline-scroll::-webkit-scrollbar {
+      height: 7px;
+    }
+    .timeline-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 9999px;
+      margin: 0 24px;
+    }
+    .timeline-scroll::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.35);
+      border-radius: 9999px;
+    }
+    .timeline-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.6);
+    }
+
+    /* Animations */
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.84) translateY(10px); }
+      70% { opacity: 1; transform: scale(1.03) translateY(0); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes shakeError {
+      0%, 100% { transform: translateX(0); }
+      18% { transform: translateX(-9px) rotate(-1.5deg); }
+      36% { transform: translateX(9px) rotate(1.5deg); }
+      54% { transform: translateX(-6px) rotate(-1deg); }
+      72% { transform: translateX(6px) rotate(1deg); }
+      90% { transform: translateX(-2px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.35); }
+      50% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+    }
+
+    .animate-pop-in {
+      animation: popIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .animate-shake {
+      animation: shakeError 0.48s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    .slot-pulse {
+      animation: pulseGlow 2.4s infinite;
+    }
+
+    /* Drag states */
+    .challenger-dragging {
+      opacity: 0.55;
+      transform: scale(0.96) rotate(-2deg);
+    }
+
+    .slot-drag-over {
+      transform: scale(1.06) !important;
+      border-color: #fbbf24 !important;
+      background: rgba(251, 191, 36, 0.2) !important;
+      box-shadow: 0 0 24px rgba(251, 191, 36, 0.35) !important;
+    }
+
+    /* Jersey Mesh Texture */
+    .jersey-texture {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 0);
+      background-size: 6px 6px;
+    }
+
+    /* Crisp bottom vignette for transparent NHL headshots */
+    .headshot-vignette {
+      mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
+    }
+  </style>
+</head>
+<body class="select-none">
+
+  <!-- Top Rink Accent Stripe -->
+  <div class="rink-stripe h-1.5 w-full opacity-90 shrink-0"></div>
+
+  <!-- Header Bar -->
+  <header class="w-full max-w-6xl mx-auto px-3 sm:px-6 pt-3 pb-2 flex flex-wrap items-center justify-between gap-2 shrink-0">
+    <!-- Brand -->
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/25 border border-sky-300/30">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-slate-950" viewBox="0 0 24 24" fill="currentColor">
+          <ellipse cx="12" cy="8" rx="9" ry="3.5" />
+          <path d="M3 8v4c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5V8c0 1.93-4.03 3.5-9 3.5S3 9.93 3 8z" opacity="0.85"/>
+          <path d="M4 19h16M7 17v4M17 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-display text-xl sm:text-2xl font-extrabold tracking-wide uppercase text-white leading-none">
+            Puck<span class="text-sky-400">Line</span>
+          </h1>
+          <span id="dataSourceBadge" class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+            Loading Roster...
+          </span>
+        </div>
+        <p class="text-[11px] sm:text-xs text-slate-400 leading-tight mt-0.5">
+          Order active NHL skaters by <span class="text-slate-200 font-medium">Career Points</span> (Low → High)
+        </p>
+      </div>
+    </div>
+
+    <!-- HUD Controls: Mode, Lives, Streaks -->
+    <div class="flex items-center gap-2 sm:gap-3 ml-auto">
+      <!-- Sudden Death Toggle -->
+      <button id="modeToggleBtn" type="button" title="Toggle 3 Pucks vs Sudden Death"
+        class="px-2.5 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-300 flex items-center gap-1.5 transition active:scale-95">
+        <span id="modeDot" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="modeLabel" class="hidden sm:inline">3 Pucks</span>
+        <span id="modeLabelShort" class="sm:hidden">3 Lives</span>
+      </button>
+
+      <!-- Lives (Pucks) -->
+      <div id="livesContainer" class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80" title="Remaining Pucks (Lives)">
+      </div>
+
+      <!-- Sound FX Toggle -->
+      <button id="soundToggleBtn" type="button" aria-label="Toggle Sound Effects" title="Toggle Sound Effects"
+        class="w-9 h-9 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 flex items-center justify-center text-sky-400 hover:text-white transition active:scale-95">
+        <svg id="soundOnIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+        </svg>
+        <svg id="soundOffIcon" class="w-4 h-4 hidden text-slate-500" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
+        </svg>
+      </button>
+
+      <!-- Streak Counter -->
+      <div class="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80">
+        <div class="text-center">
+          <div class="text-[9px] uppercase tracking-wider text-slate-400 font-bold leading-none">Streak</div>
+          <div id="streakValue" class="font-display text-lg sm:text-xl font-extrabold text-sky-400 leading-none mt-0.5">0</div>
+        </div>
+        <div class="w-px h-6 bg-slate-700/80"></div>
+        <div class="text-center">
+          <div class="text-[9px] uppercase tracking-wider text-slate-400 font-bold leading-none">Best</div>
+          <div id="bestValue" class="font-display text-lg sm:text-xl font-extrabold text-amber-400 leading-none mt-0.5">0</div>
+        </div>
+      </div>
+
+      <!-- Help Button -->
+      <button id="helpBtn" type="button" aria-label="How to play"
+        class="w-9 h-9 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 flex items-center justify-center text-slate-300 hover:text-white transition active:scale-95">
+        <span class="font-bold text-sm">?</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Game Stage -->
+  <main class="flex-1 flex flex-col justify-between max-w-6xl w-full mx-auto px-3 sm:px-6 pb-4 pt-1 gap-3">
+
+    <!-- Top Arena: Challenger Card & Live Feedback Banner -->
+    <section class="flex flex-col items-center justify-center pt-1 sm:pt-2 shrink-0">
+      <div id="feedbackBanner"
+        class="mb-2.5 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 bg-slate-900/90 border border-slate-700/80 text-slate-300 transition-all duration-300 shadow-md">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+        <span id="feedbackText">Tap a slot below or drag this player onto the timeline</span>
+      </div>
+
+      <div id="challengerWrapper" class="relative w-full max-w-[390px] sm:max-w-[440px]">
+      </div>
+    </section>
+
+    <!-- Bottom Arena: Horizontal Timeline Track -->
+    <section class="flex-1 flex flex-col justify-center min-h-[305px] sm:min-h-[340px] bg-slate-950/65 rounded-3xl border border-slate-800/90 shadow-2xl backdrop-blur-sm relative overflow-hidden py-3 sm:py-4">
+
+      <!-- Timeline Axis Header -->
+      <div class="px-4 sm:px-6 pb-2 flex items-center justify-between text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
+        <div class="flex items-center gap-1.5 text-sky-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span>Fewer Career Points</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-2 text-slate-500 font-medium normal-case">
+          <span>Cards on Ice: <strong id="timelineCount" class="text-slate-200">1</strong></span>
+          <span>•</span>
+          <span>Pool: <strong id="poolCount" class="text-slate-200">0</strong> active skaters</span>
+          <span>•</span>
+          <span>Ties count as valid</span>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-amber-400">
+          <span>More Career Points</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Desktop/Tablet Quick Scroll Buttons -->
+      <button id="scrollLeftBtn" type="button" aria-label="Scroll timeline left"
+        class="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/95 hover:bg-sky-500 hover:text-slate-950 text-slate-200 border border-slate-700 shadow-lg items-center justify-center transition active:scale-90">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+
+      <button id="scrollRightBtn" type="button" aria-label="Scroll timeline right"
+        class="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/95 hover:bg-sky-500 hover:text-slate-950 text-slate-200 border border-slate-700 shadow-lg items-center justify-center transition active:scale-90">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <!-- Horizontal Scroll Container -->
+      <div id="timelineViewport" class="timeline-scroll w-full overflow-x-auto overflow-y-visible px-6 sm:px-12 py-3 flex items-center">
+        <div id="timelineTrack" class="flex items-center gap-2.5 sm:gap-3.5 mx-auto min-w-max">
+        </div>
+      </div>
+
+      <!-- Bottom Ice Line Decoration -->
+      <div class="px-6 pt-1 flex items-center justify-center">
+        <div class="h-1 w-full max-w-2xl rounded-full bg-gradient-to-r from-sky-500/30 via-slate-700/50 to-amber-500/30"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Game Over Modal -->
+  <div id="gameOverModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md">
+    <div class="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-700/90 shadow-2xl overflow-hidden animate-pop-in">
+      <div class="rink-stripe h-1.5 w-full"></div>
+      <div class="p-6 text-center">
+        <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+        </div>
+
+        <h2 class="font-display text-3xl font-extrabold uppercase tracking-wide text-white">Final Buzzer!</h2>
+        <p id="gameOverReason" class="text-sm text-slate-400 mt-1">You ran out of pucks on the ice.</p>
+
+        <div class="grid grid-cols-2 gap-3 my-5">
+          <div class="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Final Streak</div>
+            <div id="finalStreak" class="font-display text-4xl font-extrabold text-sky-400 mt-0.5">0</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Personal Best</div>
+            <div id="finalBest" class="font-display text-4xl font-extrabold text-amber-400 mt-0.5">0</div>
+          </div>
+        </div>
+
+        <div id="lastMissSummary" class="mb-5 p-3 rounded-2xl bg-slate-800/60 border border-slate-700/70 text-xs text-slate-300 text-left">
+        </div>
+
+        <button id="playAgainBtn" type="button"
+          class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-300 hover:to-blue-400 text-slate-950 font-extrabold text-base uppercase tracking-wider shadow-lg shadow-sky-500/25 transition active:scale-98">
+          Drop the Puck Again
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- How To Play Modal -->
+  <div id="helpModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden animate-pop-in">
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-display text-2xl font-extrabold uppercase tracking-wide text-white">How to Play PuckLine</h3>
+          <button id="closeHelpBtn" type="button" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold">✕</button>
+        </div>
+        <ul class="space-y-3 text-sm text-slate-300">
+          <li class="flex items-start gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-sky-500/20 text-sky-400 font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+            <span>The timeline orders active NHL players from <strong>Lowest Career Points (Left)</strong> to <strong>Highest Career Points (Right)</strong>.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-sky-500/20 text-sky-400 font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+            <span>Tap any <span class="text-sky-300 font-semibold">[+ Place Here]</span> slot on the timeline (or drag &amp; drop the card onto a slot).</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+            <span><strong>Ties are friendly!</strong> If a player has the exact same career points as an adjacent card, placing them on either side counts as correct.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center shrink-0 mt-0.5">4</span>
+            <span><strong>Smart Deck Draw:</strong> Every active NHL skater (50+ GP) is in the pool—you'll mostly draw recognizable <strong>Top 100 superstars</strong>, occasionally <strong>Core NHL regulars</strong>, and rarely a <strong>deep-cut wildcard</strong>!</span>
+          </li>
+        </ul>
+        <button id="gotItBtn" type="button"
+          class="mt-5 w-full py-3 rounded-2xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold uppercase tracking-wider text-sm transition">
+          Got It — Let's Play
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TEAM_COLORS = {
+      ANA: { primary: "#F47920", secondary: "#B9975B" },
+      BOS: { primary: "#FFB81C", secondary: "#000000" },
+      BUF: { primary: "#003087", secondary: "#FFB81C" },
+      CGY: { primary: "#D2001C", secondary: "#FAAF19" },
+      CAR: { primary: "#CC0000", secondary: "#000000" },
+      CHI: { primary: "#CF0A2C", secondary: "#000000" },
+      COL: { primary: "#6F263D", secondary: "#236192" },
+      CBJ: { primary: "#002654", secondary: "#CE1126" },
+      DAL: { primary: "#006847", secondary: "#8F8F8C" },
+      DET: { primary: "#CE1126", secondary: "#FFFFFF" },
+      EDM: { primary: "#041E42", secondary: "#FF4C00" },
+      FLA: { primary: "#041E42", secondary: "#C8102E" },
+      LAK: { primary: "#111111", secondary: "#A2AAAD" },
+      MIN: { primary: "#154734", secondary: "#A6192E" },
+      MTL: { primary: "#AF1E2D", secondary: "#19216C" },
+      NSH: { primary: "#FFB81C", secondary: "#041E42" },
+      NJD: { primary: "#CE1126", secondary: "#000000" },
+      NYI: { primary: "#00539B", secondary: "#F47D30" },
+      NYR: { primary: "#0038A8", secondary: "#CE1126" },
+      OTT: { primary: "#C52032", secondary: "#C2912C" },
+      PHI: { primary: "#F74902", secondary: "#000000" },
+      PIT: { primary: "#000000", secondary: "#FCB514" },
+      SJS: { primary: "#006D75", secondary: "#EA7200" },
+      SEA: { primary: "#001628", secondary: "#99D9D9" },
+      STL: { primary: "#002F87", secondary: "#FCB514" },
+      TBL: { primary: "#002868", secondary: "#FFFFFF" },
+      TOR: { primary: "#00205B", secondary: "#FFFFFF" },
+      UTA: { primary: "#69BE28", secondary: "#010101" },
+      VAN: { primary: "#00205B", secondary: "#00843D" },
+      VGK: { primary: "#333F42", secondary: "#B4975A" },
+      WSH: { primary: "#C8102E", secondary: "#041E42" },
+      WPG: { primary: "#041E42", secondary: "#004C97" }
+    };
+
+    const FALLBACK_PLAYERS = [
+      { id: 8482672, name: "Shane Wright", team: "SEA", pos: "C", num: 51, gp: 135, points: 78 },
+      { id: 8483577, name: "Logan Cooley", team: "UTA", pos: "C", num: 92, gp: 185, points: 132 },
+      { id: 8484801, name: "Macklin Celebrini", team: "SJS", pos: "C", num: 71, gp: 155, points: 148 },
+      { id: 8482141, name: "Mason McTavish", team: "ANA", pos: "C", num: 23, gp: 275, points: 184 },
+      { id: 8484144, name: "Connor Bedard", team: "CHI", pos: "C", num: 98, gp: 235, points: 218 },
+      { id: 8482110, name: "Matt Boldy", team: "MIN", pos: "RW", num: 12, gp: 315, points: 268 },
+      { id: 8481522, name: "Alexis Lafrenière", team: "NYR", pos: "LW", num: 13, gp: 410, points: 274 },
+      { id: 8482109, name: "Cole Caufield", team: "MTL", pos: "RW", num: 13, gp: 335, points: 282 },
+      { id: 8482116, name: "Lucas Raymond", team: "DET", pos: "RW", num: 23, gp: 345, points: 298 },
+      { id: 8481540, name: "Tim Stützle", team: "OTT", pos: "C", num: 18, gp: 415, points: 386 },
+      { id: 8481559, name: "Jack Hughes", team: "NJD", pos: "C", num: 86, gp: 445, points: 468 },
+      { id: 8480800, name: "Quinn Hughes", team: "VAN", pos: "D", num: 43, gp: 515, points: 502 },
+      { id: 8480801, name: "Brady Tkachuk", team: "OTT", pos: "LW", num: 7, gp: 595, points: 510 },
+      { id: 8478864, name: "Kirill Kaprizov", team: "MIN", pos: "LW", num: 97, gp: 415, points: 514 },
+      { id: 8480069, name: "Cale Makar", team: "COL", pos: "D", num: 8, gp: 480, points: 538 },
+      { id: 8480012, name: "Elias Pettersson", team: "VAN", pos: "C", num: 40, gp: 560, points: 564 },
+      { id: 8477939, name: "William Nylander", team: "TOR", pos: "RW", num: 88, gp: 710, points: 662 },
+      { id: 8478403, name: "Jack Eichel", team: "VGK", pos: "C", num: 9, gp: 690, points: 708 },
+      { id: 8478427, name: "Sebastian Aho", team: "CAR", pos: "C", num: 20, gp: 760, points: 726 },
+      { id: 8478010, name: "Brayden Point", team: "TBL", pos: "C", num: 21, gp: 740, points: 734 },
+      { id: 8479314, name: "Matthew Tkachuk", team: "FLA", pos: "LW", num: 19, gp: 720, points: 742 },
+      { id: 8476887, name: "Filip Forsberg", team: "NSH", pos: "LW", num: 9, gp: 810, points: 748 },
+      { id: 8474600, name: "Roman Josi", team: "NSH", pos: "D", num: 59, gp: 1020, points: 782 },
+      { id: 8478420, name: "Mikko Rantanen", team: "COL", pos: "RW", num: 96, gp: 735, points: 814 },
+      { id: 8478483, name: "Mitch Marner", team: "TOR", pos: "RW", num: 16, gp: 745, points: 836 },
+      { id: 8479318, name: "Auston Matthews", team: "TOR", pos: "C", num: 34, gp: 720, points: 845 },
+      { id: 8476460, name: "Mark Scheifele", team: "WPG", pos: "C", num: 55, gp: 910, points: 848 },
+      { id: 8475167, name: "Victor Hedman", team: "TBL", pos: "D", num: 77, gp: 1160, points: 852 },
+      { id: 8477493, name: "Aleksander Barkov", team: "FLA", pos: "C", num: 16, gp: 890, points: 884 },
+      { id: 8475794, name: "Tyler Seguin", team: "DAL", pos: "C", num: 91, gp: 1080, points: 886 },
+      { id: 8474578, name: "Erik Karlsson", team: "PIT", pos: "D", num: 65, gp: 1110, points: 922 },
+      { id: 8477956, name: "David Pastrňák", team: "BOS", pos: "RW", num: 88, gp: 845, points: 959 },
+      { id: 8478550, name: "Artemi Panarin", team: "NYR", pos: "LW", num: 10, gp: 840, points: 974 },
+      { id: 8473994, name: "Jamie Benn", team: "DAL", pos: "LW", num: 14, gp: 1220, points: 998 },
+      { id: 8473419, name: "Brad Marchand", team: "BOS", pos: "LW", num: 63, gp: 1175, points: 1064 },
+      { id: 8477934, name: "Leon Draisaitl", team: "EDM", pos: "C", num: 29, gp: 885, points: 1082 },
+      { id: 8476453, name: "Nikita Kucherov", team: "TBL", pos: "RW", num: 86, gp: 895, points: 1126 },
+      { id: 8477492, name: "Nathan MacKinnon", team: "COL", pos: "C", num: 29, gp: 960, points: 1148 },
+      { id: 8475166, name: "John Tavares", team: "TOR", pos: "C", num: 91, gp: 1265, points: 1182 },
+      { id: 8473512, name: "Claude Giroux", team: "OTT", pos: "RW", num: 28, gp: 1345, points: 1196 },
+      { id: 8478402, name: "Connor McDavid", team: "EDM", pos: "C", num: 97, gp: 815, points: 1245 },
+      { id: 8474564, name: "Steven Stamkos", team: "NSH", pos: "C", num: 91, gp: 1245, points: 1258 },
+      { id: 8471685, name: "Anže Kopitar", team: "LAK", pos: "C", num: 11, gp: 1520, points: 1348 },
+      { id: 8474141, name: "Patrick Kane", team: "DET", pos: "RW", num: 88, gp: 1390, points: 1406 },
+      { id: 8471215, name: "Evgeni Malkin", team: "PIT", pos: "C", num: 71, gp: 1290, points: 1438 },
+      { id: 8471214, name: "Alex Ovechkin", team: "WSH", pos: "LW", num: 8, gp: 1575, points: 1704 },
+      { id: 8471675, name: "Sidney Crosby", team: "PIT", pos: "C", num: 87, gp: 1445, points: 1765 }
+    ];
+
+    let fullRoster = [];
+
+    const state = {
+      timeline: [],
+      usedIds: new Set(),
+      challenger: null,
+      streak: 0,
+      bestStreak: parseInt(localStorage.getItem('puckline_best_streak') || '0', 10),
+      maxLives: 3,
+      lives: 3,
+      suddenDeath: false,
+      soundEnabled: true,
+      isLocked: false,
+      lastAddedId: null
+    };
+
+    const audioCtx = typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)
+      ? new (window.AudioContext || window.webkitAudioContext)()
+      : null;
+
+    function playTone(type) {
+      if (!audioCtx || !state.soundEnabled) return;
+      try {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === 'success') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.08);
+          osc.frequency.setValueAtTime(783.99, now + 0.16);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.34);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'error') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(165, now);
+          osc.frequency.linearRampToValueAtTime(115, now + 0.28);
+          gain.gain.setValueAtTime(0.11, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+          osc.start(now);
+          osc.stop(now + 0.33);
+        }
+      } catch (e) {}
+    }
+
+    const els = {
+      dataSourceBadge: document.getElementById('dataSourceBadge'),
+      streakValue: document.getElementById('streakValue'),
+      bestValue: document.getElementById('bestValue'),
+      livesContainer: document.getElementById('livesContainer'),
+      modeToggleBtn: document.getElementById('modeToggleBtn'),
+      modeDot: document.getElementById('modeDot'),
+      modeLabel: document.getElementById('modeLabel'),
+      modeLabelShort: document.getElementById('modeLabelShort'),
+      soundToggleBtn: document.getElementById('soundToggleBtn'),
+      soundOnIcon: document.getElementById('soundOnIcon'),
+      soundOffIcon: document.getElementById('soundOffIcon'),
+      feedbackBanner: document.getElementById('feedbackBanner'),
+      feedbackText: document.getElementById('feedbackText'),
+      challengerWrapper: document.getElementById('challengerWrapper'),
+      timelineViewport: document.getElementById('timelineViewport'),
+      timelineTrack: document.getElementById('timelineTrack'),
+      timelineCount: document.getElementById('timelineCount'),
+      poolCount: document.getElementById('poolCount'),
+      scrollLeftBtn: document.getElementById('scrollLeftBtn'),
+      scrollRightBtn: document.getElementById('scrollRightBtn'),
+      gameOverModal: document.getElementById('gameOverModal'),
+      gameOverReason: document.getElementById('gameOverReason'),
+      finalStreak: document.getElementById('finalStreak'),
+      finalBest: document.getElementById('finalBest'),
+      lastMissSummary: document.getElementById('lastMissSummary'),
+      playAgainBtn: document.getElementById('playAgainBtn'),
+      helpBtn: document.getElementById('helpBtn'),
+      helpModal: document.getElementById('helpModal'),
+      closeHelpBtn: document.getElementById('closeHelpBtn'),
+      gotItBtn: document.getElementById('gotItBtn')
+    };
+
+    function normalizePlayer(raw) {
+      const teamCode = (raw.team || raw.teamAbbrevs || 'NHL').split(',')[0].trim().toUpperCase();
+      const colors = TEAM_COLORS[teamCode] || { primary: '#0284c7', secondary: '#38bdf8' };
+      return {
+        id: Number(raw.id || raw.playerId),
+        name: raw.name || raw.skaterFullName || 'NHL Skater',
+        team: teamCode,
+        pos: raw.pos || raw.positionCode || 'F',
+        num: raw.num || raw.sweaterNumber || '',
+        gp: Number(raw.gp || raw.gamesPlayed || 0),
+        points: Number(raw.points || 0),
+        primary: raw.primary || colors.primary,
+        secondary: raw.secondary || colors.secondary
+      };
+    }
+
+    async function loadRosterData() {
+      try {
+        const res = await fetch(`./players.json?t=${Date.now()}`, { cache: 'no-store' });
+        if (!res.ok) throw new Error('No players.json found');
+        const data = await res.json();
+        const list = Array.isArray(data) ? data : (data.players || []);
+        const valid = list
+          .map(normalizePlayer)
+          .filter((p) => p.id && p.gp >= 50 && !Number.isNaN(p.points))
+          .sort((a, b) => b.points - a.points);
+
+        if (valid.length >= 10) {
+          fullRoster = valid;
+          const updatedLabel = data.updatedAt ? ` • ${data.updatedAt}` : '';
+          els.dataSourceBadge.textContent = `Live Feed (${valid.length})${updatedLabel}`;
+          els.dataSourceBadge.className = 'text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30';
+          return;
+        }
+      } catch (err) {}
+
+      fullRoster = FALLBACK_PLAYERS.map(normalizePlayer).sort((a, b) => b.points - a.points);
+      els.dataSourceBadge.textContent = `Starter Roster (${fullRoster.length})`;
+      els.dataSourceBadge.className = 'text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/30';
+    }
+
+    function drawWeightedPlayer() {
+      const top100 = fullRoster.slice(0, 100).filter((p) => !state.usedIds.has(p.id));
+      const core = fullRoster.slice(100, 250).filter((p) => !state.usedIds.has(p.id));
+      const depth = fullRoster.slice(250).filter((p) => !state.usedIds.has(p.id));
+
+      const buckets = [];
+      if (top100.length > 0) buckets.push({ weight: 65, pool: top100 });
+      if (core.length > 0) buckets.push({ weight: 25, pool: core });
+      if (depth.length > 0) buckets.push({ weight: 10, pool: depth });
+
+      if (buckets.length === 0) return null;
+
+      const totalWeight = buckets.reduce((sum, b) => sum + b.weight, 0);
+      let roll = Math.random() * totalWeight;
+      let chosenPool = buckets[0].pool;
+
+      for (const b of buckets) {
+        if (roll < b.weight) {
+          chosenPool = b.pool;
+          break;
+        }
+        roll -= b.weight;
+      }
+
+      const picked = chosenPool[Math.floor(Math.random() * chosenPool.length)];
+      state.usedIds.add(picked.id);
+      return picked;
+    }
+
+    function setFeedback(text, variant = 'neutral') {
+      els.feedbackText.textContent = text;
+      const base = 'mb-2.5 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 border transition-all duration-300 shadow-md ';
+      const dot = els.feedbackBanner.querySelector('span:first-child');
+
+      if (variant === 'success') {
+        els.feedbackBanner.className = base + 'bg-emerald-950/90 border-emerald-500/60 text-emerald-200';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+      } else if (variant === 'error') {
+        els.feedbackBanner.className = base + 'bg-rose-950/90 border-rose-500/60 text-rose-200';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-rose-400';
+      } else {
+        els.feedbackBanner.className = base + 'bg-slate-900/90 border-slate-700/80 text-slate-300';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-sky-400 animate-pulse';
+      }
+    }
+
+    function renderHUD() {
+      els.streakValue.textContent = state.streak;
+      els.bestValue.textContent = state.bestStreak;
+      els.timelineCount.textContent = state.timeline.length;
+      if (els.poolCount) els.poolCount.textContent = fullRoster.length;
+
+      if (state.suddenDeath) {
+        els.modeDot.className = 'w-2 h-2 rounded-full bg-rose-500';
+        els.modeLabel.textContent = 'Sudden Death';
+        els.modeLabelShort.textContent = '1 Life';
+      } else {
+        els.modeDot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+        els.modeLabel.textContent = '3 Pucks';
+        els.modeLabelShort.textContent = '3 Lives';
+      }
+
+      els.livesContainer.innerHTML = '';
+      for (let i = 0; i < state.maxLives; i++) {
+        const active = i < state.lives;
+        const puck = document.createElement('div');
+        puck.className = `w-4 h-4 rounded-full border transition-all duration-300 flex items-center justify-center ${
+          active
+            ? 'bg-sky-400 border-sky-200 shadow-sm shadow-sky-400/50 scale-100'
+            : 'bg-slate-800/60 border-slate-700 opacity-35 scale-90'
+        }`;
+        puck.innerHTML = `<div class="w-1.5 h-1.5 rounded-full ${active ? 'bg-slate-950' : 'bg-slate-600'}"></div>`;
+        els.livesContainer.appendChild(puck);
+      }
+    }
+
+    window.handlePlayerImgError = function (imgEl, teamAbbrev) {
+      const tier = imgEl.dataset.fallbackTier || 'headshot';
+      if (tier === 'headshot') {
+        imgEl.dataset.fallbackTier = 'logo';
+        imgEl.classList.remove('object-cover', 'object-top', 'scale-105', 'headshot-vignette');
+        imgEl.classList.add('object-contain', 'p-2');
+        imgEl.src = `https://assets.nhle.com/logos/nhl/svg/${teamAbbrev}_dark.svg`;
+      } else {
+        imgEl.style.display = 'none';
+        const fallbackBadge = imgEl.nextElementSibling;
+        if (fallbackBadge) {
+          fallbackBadge.classList.remove('hidden');
+          fallbackBadge.classList.add('flex');
+        }
+      }
+    };
+
+    function createPlayerAvatar(player, size = 'md') {
+      const isLarge = size === 'lg';
+      const dims = isLarge ? 'w-24 h-24 sm:w-28 sm:h-28' : 'w-20 h-20 sm:w-24 sm:h-24';
+      const textClass = isLarge ? 'text-2xl' : 'text-xl';
+      const headshotUrl = `https://assets.nhle.com/mugs/nhl/latest/${player.id}.png`;
+      const jerseyLabel = player.num ? `#${player.num}` : player.pos;
+
+      return `
+        <div class="${dims} rounded-2xl relative overflow-hidden shrink-0 border-2 shadow-inner flex items-center justify-center"
+             style="background: radial-gradient(circle at 50% 25%, ${player.primary}ee, #090f1d 92%); border-color: ${player.secondary};">
+          <img
+            src="${headshotUrl}"
+            alt="${player.name}"
+            loading="lazy"
+            data-fallback-tier="headshot"
+            onerror="window.handlePlayerImgError(this, '${player.team}')"
+            class="w-full h-full object-cover object-top scale-105 headshot-vignette select-none pointer-events-none"
+          />
+          <div class="hidden w-full h-full jersey-texture flex-col items-center justify-center font-display font-extrabold text-white ${textClass}"
+               style="background-color: ${player.primary}; text-shadow: 0 1px 3px rgba(0,0,0,0.85);">
+            <span class="text-[10px] leading-none opacity-85 tracking-widest uppercase font-sans font-bold">${player.team}</span>
+            <span class="leading-none mt-0.5">${jerseyLabel}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function createTeamLogoChip(player) {
+      const logoUrl = `https://assets.nhle.com/logos/nhl/svg/${player.team}_dark.svg`;
+      return `
+        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-slate-800/95 border border-slate-700/80 text-[10px] font-bold text-slate-200 uppercase">
+          <img src="${logoUrl}" alt="${player.team}" class="w-4 h-4 object-contain shrink-0" onerror="this.style.display='none'" />
+          <span>${player.team}</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-sky-300">${player.pos}</span>
+        </span>
+      `;
+    }
+
+    function getPlayerTierChip(player) {
+      const rank = fullRoster.findIndex((p) => p.id === player.id);
+      if (rank >= 0 && rank < 100) {
+        return `<span class="px-1.5 py-0.5 rounded-md bg-amber-500/15 border border-amber-400/30 text-[10px] font-bold text-amber-300">★ Top 100</span>`;
+      }
+      if (rank >= 100 && rank < 250) {
+        return `<span class="px-1.5 py-0.5 rounded-md bg-sky-500/15 border border-sky-400/30 text-[10px] font-bold text-sky-300">Core NHL</span>`;
+      }
+      return `<span class="px-1.5 py-0.5 rounded-md bg-purple-500/15 border border-purple-400/30 text-[10px] font-bold text-purple-300">Wildcard</span>`;
+    }
+
+    function renderChallengerCard(revealState = false, isCorrect = false) {
+      const p = state.challenger;
+      if (!p) return;
+
+      let borderClass = 'border-sky-400/60 shadow-sky-500/15';
+      let badgeHtml = `
+        <div class="px-3 py-2 rounded-xl bg-slate-950/90 border border-sky-400/40 text-center min-w-[88px] sm:min-w-[96px] shrink-0">
+          <div class="text-[9px] uppercase tracking-wider text-sky-400 font-bold">Career Pts</div>
+          <div class="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-wider leading-none mt-0.5">???</div>
+        </div>
+      `;
+
+      if (revealState) {
+        if (isCorrect) {
+          borderClass = 'border-emerald-400 shadow-emerald-500/30 ring-2 ring-emerald-400/40';
+          badgeHtml = `
+            <div class="px-3 py-2 rounded-xl bg-emerald-950 border border-emerald-400 text-center min-w-[88px] sm:min-w-[96px] shrink-0">
+              <div class="text-[9px] uppercase tracking-wider text-emerald-300 font-bold">Career Pts</div>
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-emerald-300 leading-none mt-0.5">${p.points.toLocaleString()}</div>
+            </div>
+          `;
+        } else {
+          borderClass = 'border-rose-500 shadow-rose-500/30 ring-2 ring-rose-500/40 animate-shake';
+          badgeHtml = `
+            <div class="px-3 py-2 rounded-xl bg-rose-950 border border-rose-400 text-center min-w-[88px] sm:min-w-[96px] shrink-0">
+              <div class="text-[9px] uppercase tracking-wider text-rose-300 font-bold">Actual Pts</div>
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-rose-300 leading-none mt-0.5">${p.points.toLocaleString()}</div>
+            </div>
+          `;
+        }
+      }
+
+      els.challengerWrapper.innerHTML = `
+        <div id="activeChallengerCard" draggable="${!revealState}"
+          class="cursor-grab active:cursor-grabbing rounded-2xl bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 p-3 sm:p-4 border-2 ${borderClass} shadow-xl transition-all duration-200 ${!revealState ? 'animate-pop-in' : ''}">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 sm:gap-3.5 min-w-0">
+              ${createPlayerAvatar(p, 'lg')}
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  ${createTeamLogoChip(p)}
+                  ${getPlayerTierChip(p)}
+                  <span class="text-xs text-slate-400 font-medium">${p.gp.toLocaleString()} GP</span>
+                </div>
+                <h2 class="font-display text-xl sm:text-2xl font-extrabold text-white truncate leading-tight mt-1">
+                  ${p.name}
+                </h2>
+                <div class="text-[11px] text-slate-400 flex items-center gap-1 mt-1">
+                  <svg class="w-3.5 h-3.5 text-sky-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/>
+                  </svg>
+                  <span>Drag or tap a slot below</span>
+                </div>
+              </div>
+            </div>
+            ${badgeHtml}
+          </div>
+        </div>
+      `;
+
+      const cardEl = document.getElementById('activeChallengerCard');
+      if (cardEl && !revealState) {
+        cardEl.addEventListener('dragstart', (e) => {
+          cardEl.classList.add('challenger-dragging');
+          e.dataTransfer.setData('text/plain', 'challenger');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        cardEl.addEventListener('dragend', () => {
+          cardEl.classList.remove('challenger-dragging');
+          document.querySelectorAll('.slot-drag-over').forEach((el) => el.classList.remove('slot-drag-over'));
+        });
+      }
+    }
+
+    function renderTimeline(highlightCorrectSlot = -1) {
+      els.timelineTrack.innerHTML = '';
+
+      for (let i = 0; i <= state.timeline.length; i++) {
+        const leftPlayer = i > 0 ? state.timeline[i - 1] : null;
+        const rightPlayer = i < state.timeline.length ? state.timeline[i] : null;
+
+        let rangeText = '';
+        if (!leftPlayer && rightPlayer) {
+          rangeText = `< ${rightPlayer.points.toLocaleString()}`;
+        } else if (leftPlayer && !rightPlayer) {
+          rangeText = `> ${leftPlayer.points.toLocaleString()}`;
+        } else if (leftPlayer && rightPlayer) {
+          rangeText = `${leftPlayer.points}–${rightPlayer.points}`;
+        }
+
+        const slotBtn = document.createElement('button');
+        slotBtn.type = 'button';
+        slotBtn.dataset.slotIndex = i;
+        slotBtn.ariaLabel = `Place player at position ${i + 1} (${rangeText} points)`;
+
+        const isHighlighted = highlightCorrectSlot === i;
+        slotBtn.className = `group relative w-24 sm:w-28 h-52 sm:h-56 rounded-2xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center gap-1.5 px-2 shrink-0 focus:outline-none ${
+          isHighlighted
+            ? 'border-amber-400 bg-amber-500/20 scale-105 shadow-lg shadow-amber-500/25'
+            : 'border-sky-400/45 bg-sky-500/5 hover:bg-sky-500/15 hover:border-sky-300 active:scale-95 slot-pulse'
+        }`;
+
+        slotBtn.innerHTML = `
+          <div class="w-8 h-8 rounded-full ${isHighlighted ? 'bg-amber-400 text-slate-950' : 'bg-sky-500/20 group-hover:bg-sky-400 text-sky-300 group-hover:text-slate-950'} flex items-center justify-center font-extrabold text-lg transition-colors">
+            +
+          </div>
+          <span class="text-[11px] font-extrabold uppercase tracking-wider ${isHighlighted ? 'text-amber-300' : 'text-sky-300 group-hover:text-white'}">
+            ${isHighlighted ? 'Belonged Here' : 'Place Here'}
+          </span>
+          <span class="text-[10px] font-semibold text-slate-400 bg-slate-950/70 px-2 py-0.5 rounded-full border border-slate-800">
+            ${rangeText}
+          </span>
+        `;
+
+        slotBtn.addEventListener('click', () => handlePlacementAttempt(i));
+        slotBtn.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          slotBtn.classList.add('slot-drag-over');
+        });
+        slotBtn.addEventListener('dragleave', () => {
+          slotBtn.classList.remove('slot-drag-over');
+        });
+        slotBtn.addEventListener('drop', (e) => {
+          e.preventDefault();
+          slotBtn.classList.remove('slot-drag-over');
+          handlePlacementAttempt(i);
+        });
+
+        els.timelineTrack.appendChild(slotBtn);
+
+        if (rightPlayer) {
+          const isNewlyPlaced = rightPlayer.id === state.lastAddedId;
+          const card = document.createElement('div');
+          card.id = `placed-card-${rightPlayer.id}`;
+          card.className = `w-40 sm:w-44 h-52 sm:h-56 rounded-2xl bg-slate-900 border ${
+            isNewlyPlaced
+              ? 'border-emerald-400 ring-2 ring-emerald-400/40 shadow-lg shadow-emerald-500/20 animate-pop-in'
+              : 'border-slate-700/90 shadow-lg'
+          } p-3 flex flex-col justify-between shrink-0 relative overflow-hidden`;
+
+          card.innerHTML = `
+            <div class="absolute top-0 inset-x-0 h-1.5" style="background: linear-gradient(90deg, ${rightPlayer.primary}, ${rightPlayer.secondary});"></div>
+
+            <div class="flex items-start justify-between gap-1.5 pt-1">
+              ${createPlayerAvatar(rightPlayer, 'md')}
+              <div class="flex flex-col items-end gap-1.5">
+                <img src="https://assets.nhle.com/logos/nhl/svg/${rightPlayer.team}_dark.svg"
+                     alt="${rightPlayer.team}"
+                     class="w-7 h-7 object-contain"
+                     onerror="this.style.display='none'" />
+                <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] font-bold text-slate-300 uppercase">
+                  ${rightPlayer.pos}
+                </span>
+              </div>
+            </div>
+
+            <div class="my-auto pt-1.5">
+              <div class="font-display text-base sm:text-lg font-extrabold text-white leading-tight line-clamp-1">
+                ${rightPlayer.name}
+              </div>
+              <div class="text-[11px] text-slate-400 mt-0.5">${rightPlayer.gp.toLocaleString()} GP</div>
+            </div>
+
+            <div class="pt-1.5 border-t border-slate-800 flex items-baseline justify-between">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Points</span>
+              <span class="font-display text-2xl font-extrabold ${isNewlyPlaced ? 'text-emerald-400' : 'text-amber-400'} leading-none">
+                ${rightPlayer.points.toLocaleString()}
+              </span>
+            </div>
+          `;
+
+          els.timelineTrack.appendChild(card);
+        }
+      }
+    }
+
+    function findCorrectSlotIndex(player) {
+      for (let i = 0; i <= state.timeline.length; i++) {
+        const leftPts = i > 0 ? state.timeline[i - 1].points : -Infinity;
+        const rightPts = i < state.timeline.length ? state.timeline[i].points : Infinity;
+        if (player.points >= leftPts && player.points <= rightPts) {
+          return i;
+        }
+      }
+      return 0;
+    }
+
+    function scrollTimelineToElement(element) {
+      if (!element || !els.timelineViewport) return;
+      const viewportRect = els.timelineViewport.getBoundingClientRect();
+      const elRect = element.getBoundingClientRect();
+      const offset = (elRect.left - viewportRect.left) - (viewportRect.width / 2) + (elRect.width / 2);
+      els.timelineViewport.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+
+    function handlePlacementAttempt(slotIndex) {
+      if (state.isLocked || !state.challenger) return;
+      state.isLocked = true;
+
+      const player = state.challenger;
+      const leftPts = slotIndex > 0 ? state.timeline[slotIndex - 1].points : -Infinity;
+      const rightPts = slotIndex < state.timeline.length ? state.timeline[slotIndex].points : Infinity;
+
+      const isValid = player.points >= leftPts && player.points <= rightPts;
+
+      if (isValid) {
+        playTone('success');
+        state.streak += 1;
+        if (state.streak > state.bestStreak) {
+          state.bestStreak = state.streak;
+          localStorage.setItem('puckline_best_streak', String(state.bestStreak));
+        }
+
+        state.timeline.splice(slotIndex, 0, player);
+        state.lastAddedId = player.id;
+
+        renderHUD();
+        renderChallengerCard(true, true);
+        renderTimeline();
+        setFeedback(`Goal! ${player.name} has ${player.points.toLocaleString()} career points.`, 'success');
+
+        const placedEl = document.getElementById(`placed-card-${player.id}`);
+        scrollTimelineToElement(placedEl);
+
+        setTimeout(() => {
+          drawNextChallenger();
+          state.isLocked = false;
+        }, 900);
+      } else {
+        playTone('error');
+        state.lives -= 1;
+        const correctSlot = findCorrectSlotIndex(player);
+
+        renderHUD();
+        renderChallengerCard(true, false);
+        renderTimeline(correctSlot);
+
+        const highlightedSlotEl = els.timelineTrack.querySelector(`[data-slot-index="${correctSlot}"]`);
+        scrollTimelineToElement(highlightedSlotEl);
+
+        if (state.lives <= 0) {
+          setFeedback(`Miss! ${player.name} has ${player.points.toLocaleString()} points.`, 'error');
+          setTimeout(() => {
+            showGameOver(player);
+            state.isLocked = false;
+          }, 1250);
+        } else {
+          setFeedback(
+            `Offside! ${player.name} has ${player.points.toLocaleString()} pts (${state.lives} puck${state.lives === 1 ? '' : 's'} left).`,
+            'error'
+          );
+          setTimeout(() => {
+            state.timeline.splice(correctSlot, 0, player);
+            state.lastAddedId = player.id;
+            renderTimeline();
+            drawNextChallenger();
+            state.isLocked = false;
+          }, 1500);
+        }
+      }
+    }
+
+    function drawNextChallenger() {
+      const nextPlayer = drawWeightedPlayer();
+      if (!nextPlayer) {
+        showGameOver(null, true);
+        return;
+      }
+
+      state.challenger = nextPlayer;
+      renderChallengerCard(false);
+      setFeedback('Tap a slot below or drag this player onto the timeline', 'neutral');
+    }
+
+    function showGameOver(lastMissedPlayer, clearedAll = false) {
+      els.finalStreak.textContent = state.streak;
+      els.finalBest.textContent = state.bestStreak;
+
+      if (clearedAll) {
+        els.gameOverReason.textContent = 'Unbelievable! You placed every single active NHL skater on the timeline!';
+        els.lastMissSummary.innerHTML = `<span class="text-emerald-400 font-bold">Legendary Run:</span> All ${fullRoster.length} skaters ordered accurately.`;
+      } else {
+        els.gameOverReason.textContent = state.suddenDeath
+          ? 'Sudden Death overtime ended on your first miss.'
+          : 'You ran out of pucks on the ice.';
+
+        if (lastMissedPlayer) {
+          els.lastMissSummary.innerHTML = `
+            <div class="font-bold text-slate-200 mb-0.5">Final Play Recap:</div>
+            <div><span class="text-rose-400 font-semibold">${lastMissedPlayer.name}</span> (${lastMissedPlayer.team}) has <span class="text-amber-300 font-bold">${lastMissedPlayer.points.toLocaleString()} career points</span> in ${lastMissedPlayer.gp.toLocaleString()} games.</div>
+          `;
+        }
+      }
+
+      els.gameOverModal.classList.remove('hidden');
+      els.gameOverModal.classList.add('flex');
+    }
+
+    function initGame() {
+      els.gameOverModal.classList.add('hidden');
+      els.gameOverModal.classList.remove('flex');
+
+      state.usedIds = new Set();
+
+      const top100 = fullRoster.slice(0, Math.min(100, fullRoster.length));
+      const midTop100 = top100.slice(Math.floor(top100.length * 0.25), Math.ceil(top100.length * 0.75));
+      const anchor = midTop100[Math.floor(Math.random() * midTop100.length)] || top100[0];
+
+      state.usedIds.add(anchor.id);
+      state.timeline = [anchor];
+      state.streak = 0;
+      state.maxLives = state.suddenDeath ? 1 : 3;
+      state.lives = state.maxLives;
+      state.lastAddedId = null;
+      state.isLocked = false;
+
+      renderHUD();
+      renderTimeline();
+      drawNextChallenger();
+    }
+
+    els.modeToggleBtn.addEventListener('click', () => {
+      state.suddenDeath = !state.suddenDeath;
+      initGame();
+    });
+
+    els.soundToggleBtn.addEventListener('click', () => {
+      state.soundEnabled = !state.soundEnabled;
+      els.soundOnIcon.classList.toggle('hidden', !state.soundEnabled);
+      els.soundOffIcon.classList.toggle('hidden', state.soundEnabled);
+    });
+
+    els.playAgainBtn.addEventListener('click', initGame);
+
+    els.scrollLeftBtn.addEventListener('click', () => {
+      els.timelineViewport.scrollBy({ left: -280, behavior: 'smooth' });
+    });
+
+    els.scrollRightBtn.addEventListener('click', () => {
+      els.timelineViewport.scrollBy({ left: 280, behavior: 'smooth' });
+    });
+
+    els.helpBtn.addEventListener('click', () => {
+      els.helpModal.classList.remove('hidden');
+      els.helpModal.classList.add('flex');
+    });
+
+    [els.closeHelpBtn, els.gotItBtn].forEach((btn) => {
+      btn.addEventListener('click', () => {
+        els.helpModal.classList.add('hidden');
+        els.helpModal.classList.remove('flex');
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadRosterData();
+      initGame();
+    });
+  </script>
+</body>
+</html>
