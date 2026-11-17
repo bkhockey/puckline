@@ -1,5 +1,5 @@
 {
-  "updatedAt": "Nov 17 04:05 UTC",
+  "updatedAt": "Nov 17 05:10 UTC",
   "count": 657,
   "players": [
     {
@@ -175,7 +175,7 @@
       "name": "Mika Zibanejad",
       "team": "NYR",
       "pos": "C",
-      "gp": 1032,
+      "gp": 1033,
       "points": 837
     },
     {
@@ -275,20 +275,20 @@
       "points": 782
     },
     {
+      "id": 8476468,
+      "name": "J.T. Miller",
+      "team": "NYR",
+      "pos": "C",
+      "gp": 961,
+      "points": 779
+    },
+    {
       "id": 8476887,
       "name": "Filip Forsberg",
       "team": "NSH",
       "pos": "L",
       "gp": 883,
       "points": 779
-    },
-    {
-      "id": 8476468,
-      "name": "J.T. Miller",
-      "team": "NYR",
-      "pos": "C",
-      "gp": 960,
-      "points": 778
     },
     {
       "id": 8475172,
@@ -799,7 +799,7 @@
       "name": "Nick Suzuki",
       "team": "MTL",
       "pos": "C",
-      "gp": 551,
+      "gp": 552,
       "points": 493
     },
     {
@@ -947,19 +947,19 @@
       "points": 446
     },
     {
+      "id": 8479323,
+      "name": "Adam Fox",
+      "team": "NYR",
+      "pos": "D",
+      "gp": 508,
+      "points": 446
+    },
+    {
       "id": 8474151,
       "name": "Ryan McDonagh",
       "team": "TBL",
       "pos": "D",
       "gp": 1078,
-      "points": 445
-    },
-    {
-      "id": 8479323,
-      "name": "Adam Fox",
-      "team": "NYR",
-      "pos": "D",
-      "gp": 507,
       "points": 445
     },
     {
@@ -1031,7 +1031,7 @@
       "name": "Oliver Bjorkstrand",
       "team": "NYR",
       "pos": "R",
-      "gp": 725,
+      "gp": 726,
       "points": 427
     },
     {
@@ -1063,8 +1063,8 @@
       "name": "Phillip Danault",
       "team": "MTL",
       "pos": "C",
-      "gp": 806,
-      "points": 418
+      "gp": 807,
+      "points": 419
     },
     {
       "id": 8477932,
@@ -1431,7 +1431,7 @@
       "name": "Cole Caufield",
       "team": "MTL",
       "pos": "R",
-      "gp": 388,
+      "gp": 389,
       "points": 326
     },
     {
@@ -1603,6 +1603,14 @@
       "points": 286
     },
     {
+      "id": 8480865,
+      "name": "Noah Dobson",
+      "team": "MTL",
+      "pos": "D",
+      "gp": 489,
+      "points": 286
+    },
+    {
       "id": 8476981,
       "name": "Josh Anderson",
       "team": "MTL",
@@ -1616,14 +1624,6 @@
       "team": "VGK",
       "pos": "D",
       "gp": 639,
-      "points": 285
-    },
-    {
-      "id": 8480865,
-      "name": "Noah Dobson",
-      "team": "MTL",
-      "pos": "D",
-      "gp": 488,
       "points": 285
     },
     {
@@ -1679,7 +1679,7 @@
       "name": "Alexis Lafrenière",
       "team": "NYR",
       "pos": "L",
-      "gp": 483,
+      "gp": 484,
       "points": 272
     },
     {
@@ -2099,19 +2099,19 @@
       "points": 206
     },
     {
-      "id": 8484801,
-      "name": "Macklin Celebrini",
-      "team": "SJS",
-      "pos": "C",
-      "gp": 173,
-      "points": 205
-    },
-    {
       "id": 8476312,
       "name": "Josh Manson",
       "team": "COL",
       "pos": "D",
       "gp": 718,
+      "points": 205
+    },
+    {
+      "id": 8484801,
+      "name": "Macklin Celebrini",
+      "team": "SJS",
+      "pos": "C",
+      "gp": 173,
       "points": 205
     },
     {
@@ -2183,7 +2183,7 @@
       "name": "Juraj Slafkovský",
       "team": "MTL",
       "pos": "L",
-      "gp": 302,
+      "gp": 303,
       "points": 197
     },
     {
@@ -2207,7 +2207,7 @@
       "name": "Eeli Tolvanen",
       "team": "NYR",
       "pos": "R",
-      "gp": 444,
+      "gp": 445,
       "points": 196
     },
     {
@@ -2295,8 +2295,8 @@
       "name": "Marcus Pettersson",
       "team": "NYR",
       "pos": "D",
-      "gp": 625,
-      "points": 184
+      "gp": 626,
+      "points": 185
     },
     {
       "id": 8479525,
@@ -2367,7 +2367,7 @@
       "name": "Vladislav Gavrikov",
       "team": "NYR",
       "pos": "D",
-      "gp": 538,
+      "gp": 539,
       "points": 177
     },
     {
@@ -2551,8 +2551,8 @@
       "name": "Lane Hutson",
       "team": "MTL",
       "pos": "D",
-      "gp": 186,
-      "points": 164
+      "gp": 187,
+      "points": 165
     },
     {
       "id": 8477903,
@@ -2591,7 +2591,7 @@
       "name": "Alex Newhook",
       "team": "MTL",
       "pos": "C",
-      "gp": 358,
+      "gp": 359,
       "points": 161
     },
     {
@@ -2607,7 +2607,7 @@
       "name": "Jake Evans",
       "team": "MTL",
       "pos": "C",
-      "gp": 438,
+      "gp": 439,
       "points": 160
     },
     {
@@ -2799,7 +2799,7 @@
       "name": "Kirby Dach",
       "team": "MTL",
       "pos": "C",
-      "gp": 324,
+      "gp": 325,
       "points": 143
     },
     {
@@ -3095,7 +3095,7 @@
       "name": "Alexandre Carrier",
       "team": "MTL",
       "pos": "D",
-      "gp": 389,
+      "gp": 390,
       "points": 116
     },
     {
@@ -3111,8 +3111,16 @@
       "name": "Alexandre Texier",
       "team": "MTL",
       "pos": "L",
-      "gp": 303,
+      "gp": 304,
       "points": 116
+    },
+    {
+      "id": 8482157,
+      "name": "Will Cuylle",
+      "team": "NYR",
+      "pos": "L",
+      "gp": 271,
+      "points": 115
     },
     {
       "id": 8480003,
@@ -3129,14 +3137,6 @@
       "pos": "C",
       "gp": 337,
       "points": 114
-    },
-    {
-      "id": 8482157,
-      "name": "Will Cuylle",
-      "team": "NYR",
-      "pos": "L",
-      "gp": 270,
-      "points": 113
     },
     {
       "id": 8481617,
@@ -3463,7 +3463,7 @@
       "name": "Braden Schneider",
       "team": "NYR",
       "pos": "D",
-      "gp": 389,
+      "gp": 390,
       "points": 89
     },
     {
@@ -3575,7 +3575,7 @@
       "name": "Zachary Bolduc",
       "team": "MTL",
       "pos": "R",
-      "gp": 195,
+      "gp": 196,
       "points": 84
     },
     {
@@ -3619,19 +3619,19 @@
       "points": 81
     },
     {
-      "id": 8485366,
-      "name": "Matthew Schaefer",
-      "team": "NYI",
-      "pos": "D",
-      "gp": 101,
-      "points": 80
-    },
-    {
       "id": 8478904,
       "name": "Steven Lorentz",
       "team": "CBJ",
       "pos": "C",
       "gp": 385,
+      "points": 80
+    },
+    {
+      "id": 8485366,
+      "name": "Matthew Schaefer",
+      "team": "NYI",
+      "pos": "D",
+      "gp": 101,
       "points": 80
     },
     {
@@ -3703,7 +3703,7 @@
       "name": "Kaiden Guhle",
       "team": "MTL",
       "pos": "D",
-      "gp": 224,
+      "gp": 225,
       "points": 75
     },
     {
@@ -3807,7 +3807,7 @@
       "name": "Tye Kartye",
       "team": "NYR",
       "pos": "L",
-      "gp": 225,
+      "gp": 226,
       "points": 69
     },
     {
@@ -4207,7 +4207,7 @@
       "name": "Oliver Kapanen",
       "team": "MTL",
       "pos": "C",
-      "gp": 113,
+      "gp": 114,
       "points": 41
     },
     {
@@ -4287,7 +4287,7 @@
       "name": "Gabe Perreault",
       "team": "NYR",
       "pos": "R",
-      "gp": 75,
+      "gp": 76,
       "points": 38
     },
     {
@@ -4295,7 +4295,7 @@
       "name": "Arber Xhekaj",
       "team": "MTL",
       "pos": "D",
-      "gp": 249,
+      "gp": 250,
       "points": 37
     },
     {
@@ -4547,6 +4547,14 @@
       "points": 30
     },
     {
+      "id": 8483690,
+      "name": "Noah Laba",
+      "team": "NYR",
+      "pos": "C",
+      "gp": 96,
+      "points": 30
+    },
+    {
       "id": 8482070,
       "name": "Mitchell Chaffee",
       "team": "NYI",
@@ -4568,14 +4576,6 @@
       "team": "SEA",
       "pos": "C",
       "gp": 143,
-      "points": 29
-    },
-    {
-      "id": 8483690,
-      "name": "Noah Laba",
-      "team": "NYR",
-      "pos": "C",
-      "gp": 95,
       "points": 29
     },
     {
@@ -4855,7 +4855,7 @@
       "name": "Matthew Robertson",
       "team": "NYR",
       "pos": "D",
-      "gp": 78,
+      "gp": 79,
       "points": 18
     },
     {
@@ -5019,6 +5019,14 @@
       "points": 14
     },
     {
+      "id": 8482666,
+      "name": "Scott Morrow",
+      "team": "NYR",
+      "pos": "D",
+      "gp": 53,
+      "points": 14
+    },
+    {
       "id": 8483460,
       "name": "David Jiricek",
       "team": "PHI",
@@ -5056,14 +5064,6 @@
       "team": "VGK",
       "pos": "D",
       "gp": 60,
-      "points": 13
-    },
-    {
-      "id": 8482666,
-      "name": "Scott Morrow",
-      "team": "NYR",
-      "pos": "D",
-      "gp": 52,
       "points": 13
     },
     {
@@ -5119,7 +5119,7 @@
       "name": "Matt Rempe",
       "team": "NYR",
       "pos": "C",
-      "gp": 90,
+      "gp": 91,
       "points": 11
     },
     {
