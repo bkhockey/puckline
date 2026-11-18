@@ -1,5 +1,5 @@
 {
-  "updatedAt": "Nov 18 06:22 UTC",
+  "updatedAt": "Nov 18 08:27 UTC",
   "count": 659,
   "players": [
     {
@@ -103,7 +103,7 @@
       "name": "Jamie Benn",
       "team": "DAL",
       "pos": "L",
-      "gp": 1272,
+      "gp": 1273,
       "points": 1000
     },
     {
@@ -167,7 +167,7 @@
       "name": "Mitch Marner",
       "team": "VGK",
       "pos": "R",
-      "gp": 758,
+      "gp": 759,
       "points": 847
     },
     {
@@ -183,8 +183,8 @@
       "name": "Tyler Seguin",
       "team": "DAL",
       "pos": "C",
-      "gp": 1036,
-      "points": 832
+      "gp": 1037,
+      "points": 833
     },
     {
       "id": 8475167,
@@ -215,7 +215,7 @@
       "name": "David Perron",
       "team": "DAL",
       "pos": "L",
-      "gp": 1246,
+      "gp": 1247,
       "points": 813
     },
     {
@@ -231,8 +231,8 @@
       "name": "Mikko Rantanen",
       "team": "DAL",
       "pos": "R",
-      "gp": 736,
-      "points": 804
+      "gp": 737,
+      "points": 808
     },
     {
       "id": 8474590,
@@ -315,14 +315,6 @@
       "points": 747
     },
     {
-      "id": 8478427,
-      "name": "Sebastian Aho",
-      "team": "CAR",
-      "pos": "C",
-      "gp": 777,
-      "points": 740
-    },
-    {
       "id": 8475170,
       "name": "Brayden Schenn",
       "team": "NYI",
@@ -331,11 +323,19 @@
       "points": 740
     },
     {
+      "id": 8478427,
+      "name": "Sebastian Aho",
+      "team": "CAR",
+      "pos": "C",
+      "gp": 777,
+      "points": 740
+    },
+    {
       "id": 8475913,
       "name": "Mark Stone",
       "team": "VGK",
       "pos": "R",
-      "gp": 788,
+      "gp": 789,
       "points": 728
     },
     {
@@ -343,8 +343,8 @@
       "name": "Jack Eichel",
       "team": "VGK",
       "pos": "C",
-      "gp": 712,
-      "points": 725
+      "gp": 713,
+      "points": 726
     },
     {
       "id": 8474563,
@@ -459,14 +459,6 @@
       "points": 639
     },
     {
-      "id": 8477497,
-      "name": "Sean Monahan",
-      "team": "CBJ",
-      "pos": "C",
-      "gp": 913,
-      "points": 638
-    },
-    {
       "id": 8475726,
       "name": "Tyler Toffoli",
       "team": "SJS",
@@ -475,11 +467,19 @@
       "points": 638
     },
     {
+      "id": 8477497,
+      "name": "Sean Monahan",
+      "team": "CBJ",
+      "pos": "C",
+      "gp": 913,
+      "points": 638
+    },
+    {
       "id": 8476881,
       "name": "Tomas Hertl",
       "team": "VGK",
       "pos": "C",
-      "gp": 895,
+      "gp": 896,
       "points": 624
     },
     {
@@ -611,19 +611,19 @@
       "points": 553
     },
     {
-      "id": 8478439,
-      "name": "Travis Konecny",
-      "team": "PHI",
-      "pos": "R",
-      "gp": 737,
-      "points": 550
-    },
-    {
       "id": 8476462,
       "name": "Dougie Hamilton",
       "team": "NJD",
       "pos": "D",
       "gp": 933,
+      "points": 550
+    },
+    {
+      "id": 8478439,
+      "name": "Travis Konecny",
+      "team": "PHI",
+      "pos": "R",
+      "gp": 737,
       "points": 550
     },
     {
@@ -727,8 +727,8 @@
       "name": "Jason Robertson",
       "team": "DAL",
       "pos": "L",
-      "gp": 476,
-      "points": 512
+      "gp": 477,
+      "points": 514
     },
     {
       "id": 8476458,
@@ -875,20 +875,20 @@
       "points": 464
     },
     {
+      "id": 8476448,
+      "name": "William Karlsson",
+      "team": "VGK",
+      "pos": "C",
+      "gp": 775,
+      "points": 463
+    },
+    {
       "id": 8477949,
       "name": "Alex Tuch",
       "team": "WSH",
       "pos": "R",
       "gp": 634,
       "points": 462
-    },
-    {
-      "id": 8476448,
-      "name": "William Karlsson",
-      "team": "VGK",
-      "pos": "C",
-      "gp": 774,
-      "points": 461
     },
     {
       "id": 8478042,
@@ -939,6 +939,14 @@
       "points": 449
     },
     {
+      "id": 8474151,
+      "name": "Ryan McDonagh",
+      "team": "TBL",
+      "pos": "D",
+      "gp": 1079,
+      "points": 446
+    },
+    {
       "id": 8477955,
       "name": "Jared McCann",
       "team": "SEA",
@@ -963,14 +971,6 @@
       "points": 446
     },
     {
-      "id": 8474151,
-      "name": "Ryan McDonagh",
-      "team": "TBL",
-      "pos": "D",
-      "gp": 1079,
-      "points": 446
-    },
-    {
       "id": 8474716,
       "name": "Jared Spurgeon",
       "team": "MIN",
@@ -983,8 +983,8 @@
       "name": "Roope Hintz",
       "team": "DAL",
       "pos": "C",
-      "gp": 541,
-      "points": 440
+      "gp": 542,
+      "points": 442
     },
     {
       "id": 8479400,
@@ -1011,19 +1011,19 @@
       "points": 433
     },
     {
-      "id": 8479420,
-      "name": "Tage Thompson",
-      "team": "BUF",
-      "pos": "C",
-      "gp": 550,
-      "points": 429
-    },
-    {
       "id": 8476432,
       "name": "Boone Jenner",
       "team": "WSH",
       "pos": "C",
       "gp": 827,
+      "points": 429
+    },
+    {
+      "id": 8479420,
+      "name": "Tage Thompson",
+      "team": "BUF",
+      "pos": "C",
+      "gp": 550,
       "points": 429
     },
     {
@@ -1083,19 +1083,19 @@
       "points": 412
     },
     {
-      "id": 8477447,
-      "name": "Shea Theodore",
-      "team": "VGK",
-      "pos": "D",
-      "gp": 656,
-      "points": 409
-    },
-    {
       "id": 8476419,
       "name": "Jean-Gabriel Pageau",
       "team": "NYI",
       "pos": "C",
       "gp": 888,
+      "points": 409
+    },
+    {
+      "id": 8477447,
+      "name": "Shea Theodore",
+      "team": "VGK",
+      "pos": "D",
+      "gp": 657,
       "points": 409
     },
     {
@@ -1163,19 +1163,19 @@
       "points": 382
     },
     {
-      "id": 8477409,
-      "name": "Carter Verhaeghe",
-      "team": "FLA",
-      "pos": "C",
-      "gp": 511,
-      "points": 378
-    },
-    {
       "id": 8475200,
       "name": "Dmitry Orlov",
       "team": "SJS",
       "pos": "D",
       "gp": 973,
+      "points": 378
+    },
+    {
+      "id": 8477409,
+      "name": "Carter Verhaeghe",
+      "team": "FLA",
+      "pos": "C",
+      "gp": 511,
       "points": 378
     },
     {
@@ -1255,7 +1255,7 @@
       "name": "Ivan Barbashev",
       "team": "VGK",
       "pos": "L",
-      "gp": 689,
+      "gp": 690,
       "points": 367
     },
     {
@@ -1275,19 +1275,19 @@
       "points": 359
     },
     {
+      "id": 8480036,
+      "name": "Miro Heiskanen",
+      "team": "DAL",
+      "pos": "D",
+      "gp": 568,
+      "points": 358
+    },
+    {
       "id": 8477476,
       "name": "Artturi Lehkonen",
       "team": "COL",
       "pos": "L",
       "gp": 681,
-      "points": 357
-    },
-    {
-      "id": 8480036,
-      "name": "Miro Heiskanen",
-      "team": "DAL",
-      "pos": "D",
-      "gp": 567,
       "points": 357
     },
     {
@@ -1323,19 +1323,19 @@
       "points": 353
     },
     {
-      "id": 8482078,
-      "name": "Lucas Raymond",
-      "team": "DET",
-      "pos": "L",
-      "gp": 421,
-      "points": 351
-    },
-    {
       "id": 8476480,
       "name": "Vladislav Namestnikov",
       "team": "WPG",
       "pos": "C",
       "gp": 852,
+      "points": 351
+    },
+    {
+      "id": 8482078,
+      "name": "Lucas Raymond",
+      "team": "DET",
+      "pos": "L",
+      "gp": 421,
       "points": 351
     },
     {
@@ -1387,19 +1387,19 @@
       "points": 338
     },
     {
-      "id": 8477986,
-      "name": "Brandon Montour",
-      "team": "SEA",
-      "pos": "D",
-      "gp": 682,
-      "points": 337
-    },
-    {
       "id": 8475220,
       "name": "Marcus Foligno",
       "team": "MIN",
       "pos": "L",
       "gp": 940,
+      "points": 337
+    },
+    {
+      "id": 8477986,
+      "name": "Brandon Montour",
+      "team": "SEA",
+      "pos": "D",
+      "gp": 682,
       "points": 337
     },
     {
@@ -1547,19 +1547,19 @@
       "points": 304
     },
     {
-      "id": 8479425,
-      "name": "Filip Hronek",
-      "team": "VAN",
-      "pos": "D",
-      "gp": 556,
-      "points": 301
-    },
-    {
       "id": 8476392,
       "name": "Adam Lowry",
       "team": "WPG",
       "pos": "C",
       "gp": 867,
+      "points": 301
+    },
+    {
+      "id": 8479425,
+      "name": "Filip Hronek",
+      "team": "VAN",
+      "pos": "D",
+      "gp": 556,
       "points": 301
     },
     {
@@ -1595,19 +1595,19 @@
       "points": 288
     },
     {
-      "id": 8480865,
-      "name": "Noah Dobson",
-      "team": "MTL",
-      "pos": "D",
-      "gp": 489,
-      "points": 286
-    },
-    {
       "id": 8476463,
       "name": "Jonas Brodin",
       "team": "MIN",
       "pos": "D",
       "gp": 938,
+      "points": 286
+    },
+    {
+      "id": 8480865,
+      "name": "Noah Dobson",
+      "team": "MTL",
+      "pos": "D",
+      "gp": 489,
       "points": 286
     },
     {
@@ -1623,7 +1623,7 @@
       "name": "Rasmus Andersson",
       "team": "VGK",
       "pos": "D",
-      "gp": 639,
+      "gp": 640,
       "points": 285
     },
     {
@@ -1651,6 +1651,14 @@
       "points": 283
     },
     {
+      "id": 8482740,
+      "name": "Wyatt Johnston",
+      "team": "DAL",
+      "pos": "C",
+      "gp": 347,
+      "points": 282
+    },
+    {
       "id": 8478542,
       "name": "Evan Rodrigues",
       "team": "NJD",
@@ -1664,14 +1672,6 @@
       "team": "WPG",
       "pos": "D",
       "gp": 609,
-      "points": 281
-    },
-    {
-      "id": 8482740,
-      "name": "Wyatt Johnston",
-      "team": "DAL",
-      "pos": "C",
-      "gp": 346,
       "points": 281
     },
     {
@@ -1699,19 +1699,19 @@
       "points": 271
     },
     {
-      "id": 8481533,
-      "name": "Trevor Zegras",
-      "team": "PHI",
-      "pos": "C",
-      "gp": 373,
-      "points": 268
-    },
-    {
       "id": 8476457,
       "name": "Adam Larsson",
       "team": "SEA",
       "pos": "D",
       "gp": 1030,
+      "points": 268
+    },
+    {
+      "id": 8481533,
+      "name": "Trevor Zegras",
+      "team": "PHI",
+      "pos": "C",
+      "gp": 373,
       "points": 268
     },
     {
@@ -1791,7 +1791,7 @@
       "name": "Victor Olofsson",
       "team": "VGK",
       "pos": "L",
-      "gp": 457,
+      "gp": 458,
       "points": 253
     },
     {
@@ -1827,11 +1827,19 @@
       "points": 251
     },
     {
+      "id": 8475179,
+      "name": "Dmitry Kulikov",
+      "team": "FLA",
+      "pos": "D",
+      "gp": 1059,
+      "points": 250
+    },
+    {
       "id": 8476902,
       "name": "Esa Lindell",
       "team": "DAL",
       "pos": "D",
-      "gp": 781,
+      "gp": 782,
       "points": 250
     },
     {
@@ -1840,14 +1848,6 @@
       "team": "PIT",
       "pos": "D",
       "gp": 625,
-      "points": 250
-    },
-    {
-      "id": 8475179,
-      "name": "Dmitry Kulikov",
-      "team": "FLA",
-      "pos": "D",
-      "gp": 1059,
       "points": 250
     },
     {
@@ -1935,7 +1935,7 @@
       "name": "Radek Faksa",
       "team": "DAL",
       "pos": "C",
-      "gp": 782,
+      "gp": 783,
       "points": 234
     },
     {
@@ -1979,6 +1979,14 @@
       "points": 222
     },
     {
+      "id": 8476393,
+      "name": "Nick Cousins",
+      "team": "OTT",
+      "pos": "C",
+      "gp": 742,
+      "points": 221
+    },
+    {
       "id": 8477426,
       "name": "Nick Paul",
       "team": "TOR",
@@ -2003,14 +2011,6 @@
       "points": 221
     },
     {
-      "id": 8476393,
-      "name": "Nick Cousins",
-      "team": "OTT",
-      "pos": "C",
-      "gp": 742,
-      "points": 221
-    },
-    {
       "id": 8476878,
       "name": "Zemgus Girgensons",
       "team": "TBL",
@@ -2025,6 +2025,14 @@
       "pos": "D",
       "gp": 822,
       "points": 216
+    },
+    {
+      "id": 8474568,
+      "name": "Luke Schenn",
+      "team": "VAN",
+      "pos": "D",
+      "gp": 1134,
+      "points": 214
     },
     {
       "id": 8480829,
@@ -2043,28 +2051,12 @@
       "points": 214
     },
     {
-      "id": 8474568,
-      "name": "Luke Schenn",
-      "team": "VAN",
-      "pos": "D",
-      "gp": 1134,
-      "points": 214
-    },
-    {
       "id": 8482113,
       "name": "Anton Lundell",
       "team": "FLA",
       "pos": "C",
       "gp": 381,
       "points": 212
-    },
-    {
-      "id": 8482175,
-      "name": "JJ Peterka",
-      "team": "BOS",
-      "pos": "R",
-      "gp": 341,
-      "points": 211
     },
     {
       "id": 8475462,
@@ -2080,6 +2072,14 @@
       "team": "TOR",
       "pos": "D",
       "gp": 890,
+      "points": 211
+    },
+    {
+      "id": 8482175,
+      "name": "JJ Peterka",
+      "team": "BOS",
+      "pos": "R",
+      "gp": 341,
       "points": 211
     },
     {
@@ -2099,19 +2099,19 @@
       "points": 206
     },
     {
-      "id": 8484801,
-      "name": "Macklin Celebrini",
-      "team": "SJS",
-      "pos": "C",
-      "gp": 174,
-      "points": 205
-    },
-    {
       "id": 8476312,
       "name": "Josh Manson",
       "team": "COL",
       "pos": "D",
       "gp": 718,
+      "points": 205
+    },
+    {
+      "id": 8484801,
+      "name": "Macklin Celebrini",
+      "team": "SJS",
+      "pos": "C",
+      "gp": 174,
       "points": 205
     },
     {
@@ -2139,11 +2139,19 @@
       "points": 201
     },
     {
+      "id": 8475188,
+      "name": "Brayden McNabb",
+      "team": "VGK",
+      "pos": "D",
+      "gp": 908,
+      "points": 200
+    },
+    {
       "id": 8475343,
       "name": "Nic Dowd",
       "team": "VGK",
       "pos": "C",
-      "gp": 679,
+      "gp": 680,
       "points": 200
     },
     {
@@ -2152,14 +2160,6 @@
       "team": "BUF",
       "pos": "C",
       "gp": 304,
-      "points": 199
-    },
-    {
-      "id": 8475188,
-      "name": "Brayden McNabb",
-      "team": "VGK",
-      "pos": "D",
-      "gp": 907,
       "points": 199
     },
     {
@@ -2179,6 +2179,14 @@
       "points": 198
     },
     {
+      "id": 8475208,
+      "name": "Brian Dumoulin",
+      "team": "LAK",
+      "pos": "D",
+      "gp": 807,
+      "points": 197
+    },
+    {
       "id": 8477507,
       "name": "Nikita Zadorov",
       "team": "BOS",
@@ -2192,14 +2200,6 @@
       "team": "MTL",
       "pos": "L",
       "gp": 303,
-      "points": 197
-    },
-    {
-      "id": 8475208,
-      "name": "Brian Dumoulin",
-      "team": "LAK",
-      "pos": "D",
-      "gp": 807,
       "points": 197
     },
     {
@@ -2235,6 +2235,14 @@
       "points": 191
     },
     {
+      "id": 8476331,
+      "name": "Dylan DeMelo",
+      "team": "WPG",
+      "pos": "D",
+      "gp": 738,
+      "points": 190
+    },
+    {
       "id": 8476624,
       "name": "Barclay Goodrow",
       "team": "SJS",
@@ -2243,12 +2251,12 @@
       "points": 190
     },
     {
-      "id": 8476331,
-      "name": "Dylan DeMelo",
-      "team": "WPG",
+      "id": 8475279,
+      "name": "Ben Chiarot",
+      "team": "DET",
       "pos": "D",
-      "gp": 738,
-      "points": 190
+      "gp": 826,
+      "points": 187
     },
     {
       "id": 8476891,
@@ -2272,14 +2280,6 @@
       "team": "OTT",
       "pos": "R",
       "gp": 544,
-      "points": 187
-    },
-    {
-      "id": 8475279,
-      "name": "Ben Chiarot",
-      "team": "DET",
-      "pos": "D",
-      "gp": 826,
       "points": 187
     },
     {
@@ -2331,14 +2331,6 @@
       "points": 180
     },
     {
-      "id": 8481711,
-      "name": "Matias Maccelli",
-      "team": "NYI",
-      "pos": "L",
-      "gp": 306,
-      "points": 179
-    },
-    {
       "id": 8476474,
       "name": "Stefan Noesen",
       "team": "NJD",
@@ -2347,11 +2339,27 @@
       "points": 179
     },
     {
+      "id": 8481711,
+      "name": "Matias Maccelli",
+      "team": "NYI",
+      "pos": "L",
+      "gp": 306,
+      "points": 179
+    },
+    {
+      "id": 8476473,
+      "name": "Connor Murphy",
+      "team": "EDM",
+      "pos": "D",
+      "gp": 848,
+      "points": 178
+    },
+    {
       "id": 8479351,
       "name": "Sam Steel",
       "team": "DAL",
       "pos": "C",
-      "gp": 508,
+      "gp": 509,
       "points": 178
     },
     {
@@ -2360,14 +2368,6 @@
       "team": "VAN",
       "pos": "C",
       "gp": 415,
-      "points": 178
-    },
-    {
-      "id": 8476473,
-      "name": "Connor Murphy",
-      "team": "EDM",
-      "pos": "D",
-      "gp": 848,
       "points": 178
     },
     {
@@ -2403,6 +2403,14 @@
       "points": 176
     },
     {
+      "id": 8476374,
+      "name": "Sean Kuraly",
+      "team": "BOS",
+      "pos": "C",
+      "gp": 651,
+      "points": 175
+    },
+    {
       "id": 8476822,
       "name": "Luke Glendening",
       "team": "NYR",
@@ -2419,12 +2427,12 @@
       "points": 175
     },
     {
-      "id": 8476374,
-      "name": "Sean Kuraly",
-      "team": "BOS",
-      "pos": "C",
-      "gp": 651,
-      "points": 175
+      "id": 8475324,
+      "name": "Nick Jensen",
+      "team": "ANA",
+      "pos": "D",
+      "gp": 697,
+      "points": 174
     },
     {
       "id": 8478438,
@@ -2443,20 +2451,12 @@
       "points": 174
     },
     {
-      "id": 8475324,
-      "name": "Nick Jensen",
-      "team": "ANA",
-      "pos": "D",
-      "gp": 697,
-      "points": 174
-    },
-    {
       "id": 8479353,
       "name": "Brett Howden",
       "team": "VGK",
       "pos": "C",
-      "gp": 511,
-      "points": 172
+      "gp": 512,
+      "points": 173
     },
     {
       "id": 8479977,
@@ -2475,6 +2475,14 @@
       "points": 170
     },
     {
+      "id": 8476467,
+      "name": "Jamie Oleksiak",
+      "team": "VAN",
+      "pos": "D",
+      "gp": 779,
+      "points": 169
+    },
+    {
       "id": 8482720,
       "name": "Matthew Knies",
       "team": "CBJ",
@@ -2488,14 +2496,6 @@
       "team": "ANA",
       "pos": "C",
       "gp": 223,
-      "points": 169
-    },
-    {
-      "id": 8476467,
-      "name": "Jamie Oleksiak",
-      "team": "VAN",
-      "pos": "D",
-      "gp": 779,
       "points": 169
     },
     {
@@ -2643,6 +2643,14 @@
       "points": 157
     },
     {
+      "id": 8476441,
+      "name": "Joel Edmundson",
+      "team": "LAK",
+      "pos": "D",
+      "gp": 704,
+      "points": 156
+    },
+    {
       "id": 8476873,
       "name": "Mark Jankowski",
       "team": "CAR",
@@ -2656,14 +2664,6 @@
       "team": "PHI",
       "pos": "L",
       "gp": 341,
-      "points": 156
-    },
-    {
-      "id": 8476441,
-      "name": "Joel Edmundson",
-      "team": "LAK",
-      "pos": "D",
-      "gp": 704,
       "points": 156
     },
     {
@@ -2695,7 +2695,7 @@
       "name": "Thomas Harley",
       "team": "DAL",
       "pos": "D",
-      "gp": 287,
+      "gp": 288,
       "points": 153
     },
     {
@@ -2859,19 +2859,19 @@
       "points": 142
     },
     {
-      "id": 8477018,
-      "name": "Ben Hutton",
-      "team": "NYI",
-      "pos": "D",
-      "gp": 580,
-      "points": 141
-    },
-    {
       "id": 8475790,
       "name": "Erik Gudbranson",
       "team": "CBJ",
       "pos": "D",
       "gp": 856,
+      "points": 141
+    },
+    {
+      "id": 8477018,
+      "name": "Ben Hutton",
+      "team": "NYI",
+      "pos": "D",
+      "gp": 580,
       "points": 141
     },
     {
@@ -3163,6 +3163,14 @@
       "points": 112
     },
     {
+      "id": 8475752,
+      "name": "Tyler Pitlick",
+      "team": "MIN",
+      "pos": "C",
+      "gp": 464,
+      "points": 111
+    },
+    {
       "id": 8479324,
       "name": "Ryan Lindgren",
       "team": "SEA",
@@ -3179,20 +3187,20 @@
       "points": 111
     },
     {
-      "id": 8475752,
-      "name": "Tyler Pitlick",
-      "team": "MIN",
-      "pos": "C",
-      "gp": 464,
-      "points": 111
-    },
-    {
       "id": 8482055,
       "name": "Drew O'Connor",
       "team": "VAN",
       "pos": "L",
       "gp": 346,
       "points": 110
+    },
+    {
+      "id": 8475235,
+      "name": "Nicolas Deslauriers",
+      "team": "CAR",
+      "pos": "L",
+      "gp": 720,
+      "points": 109
     },
     {
       "id": 8479371,
@@ -3219,14 +3227,6 @@
       "points": 109
     },
     {
-      "id": 8475235,
-      "name": "Nicolas Deslauriers",
-      "team": "CAR",
-      "pos": "L",
-      "gp": 720,
-      "points": 109
-    },
-    {
       "id": 8481186,
       "name": "Logan O'Connor",
       "team": "COL",
@@ -3243,19 +3243,19 @@
       "points": 108
     },
     {
+      "id": 8476278,
+      "name": "Colin Blackwell",
+      "team": "DAL",
+      "pos": "C",
+      "gp": 383,
+      "points": 107
+    },
+    {
       "id": 8482159,
       "name": "Tyson Foerster",
       "team": "PHI",
       "pos": "R",
       "gp": 218,
-      "points": 107
-    },
-    {
-      "id": 8476278,
-      "name": "Colin Blackwell",
-      "team": "DAL",
-      "pos": "C",
-      "gp": 382,
       "points": 107
     },
     {
@@ -3307,19 +3307,19 @@
       "points": 100
     },
     {
-      "id": 8481577,
-      "name": "Philip Tomasino",
-      "team": "OTT",
-      "pos": "R",
-      "gp": 226,
-      "points": 99
-    },
-    {
       "id": 8475718,
       "name": "Justin Holl",
       "team": "WSH",
       "pos": "D",
       "gp": 408,
+      "points": 99
+    },
+    {
+      "id": 8481577,
+      "name": "Philip Tomasino",
+      "team": "OTT",
+      "pos": "R",
+      "gp": 226,
       "points": 99
     },
     {
@@ -3435,6 +3435,14 @@
       "points": 91
     },
     {
+      "id": 8475842,
+      "name": "Sam Carrick",
+      "team": "BUF",
+      "pos": "C",
+      "gp": 403,
+      "points": 90
+    },
+    {
       "id": 8481032,
       "name": "Paul Cotter",
       "team": "VAN",
@@ -3448,14 +3456,6 @@
       "team": "STL",
       "pos": "D",
       "gp": 251,
-      "points": 90
-    },
-    {
-      "id": 8475842,
-      "name": "Sam Carrick",
-      "team": "BUF",
-      "pos": "C",
-      "gp": 403,
       "points": 90
     },
     {
@@ -3651,19 +3651,19 @@
       "points": 80
     },
     {
-      "id": 8478104,
-      "name": "Samuel Blais",
-      "team": "OTT",
-      "pos": "L",
-      "gp": 283,
-      "points": 79
-    },
-    {
       "id": 8476372,
       "name": "Nick Seeler",
       "team": "PHI",
       "pos": "D",
       "gp": 477,
+      "points": 79
+    },
+    {
+      "id": 8478104,
+      "name": "Samuel Blais",
+      "team": "OTT",
+      "pos": "L",
+      "gp": 283,
       "points": 79
     },
     {
@@ -3907,20 +3907,20 @@
       "points": 63
     },
     {
+      "id": 8480878,
+      "name": "Nils Lundkvist",
+      "team": "DAL",
+      "pos": "D",
+      "gp": 256,
+      "points": 62
+    },
+    {
       "id": 8481028,
       "name": "Martin Pospisil",
       "team": "CGY",
       "pos": "C",
       "gp": 188,
       "points": 62
-    },
-    {
-      "id": 8480878,
-      "name": "Nils Lundkvist",
-      "team": "DAL",
-      "pos": "D",
-      "gp": 255,
-      "points": 61
     },
     {
       "id": 8484186,
@@ -3931,20 +3931,20 @@
       "points": 61
     },
     {
+      "id": 8478468,
+      "name": "Jeremy Lauzon",
+      "team": "VGK",
+      "pos": "D",
+      "gp": 407,
+      "points": 60
+    },
+    {
       "id": 8479372,
       "name": "Josh Mahura",
       "team": "SEA",
       "pos": "D",
       "gp": 292,
       "points": 60
-    },
-    {
-      "id": 8478468,
-      "name": "Jeremy Lauzon",
-      "team": "VGK",
-      "pos": "D",
-      "gp": 406,
-      "points": 59
     },
     {
       "id": 8480891,
@@ -4111,7 +4111,7 @@
       "name": "Parker Wotherspoon",
       "team": "VGK",
       "pos": "D",
-      "gp": 197,
+      "gp": 198,
       "points": 47
     },
     {
@@ -4391,7 +4391,7 @@
       "name": "Braeden Bowman",
       "team": "VGK",
       "pos": "R",
-      "gp": 76,
+      "gp": 77,
       "points": 34
     },
     {
@@ -4407,7 +4407,7 @@
       "name": "Justin Hryckowian",
       "team": "DAL",
       "pos": "C",
-      "gp": 106,
+      "gp": 107,
       "points": 34
     },
     {
@@ -4635,6 +4635,14 @@
       "points": 28
     },
     {
+      "id": 8475413,
+      "name": "Justin Dowling",
+      "team": "NYR",
+      "pos": "C",
+      "gp": 158,
+      "points": 27
+    },
+    {
       "id": 8480326,
       "name": "Sheldon Dries",
       "team": "DET",
@@ -4656,14 +4664,6 @@
       "team": "VAN",
       "pos": "R",
       "gp": 60,
-      "points": 27
-    },
-    {
-      "id": 8475413,
-      "name": "Justin Dowling",
-      "team": "NYR",
-      "pos": "C",
-      "gp": 158,
       "points": 27
     },
     {
@@ -4703,7 +4703,7 @@
       "name": "Dylan Coghlan",
       "team": "VGK",
       "pos": "D",
-      "gp": 129,
+      "gp": 130,
       "points": 24
     },
     {
@@ -4743,7 +4743,7 @@
       "name": "Kyle Burroughs",
       "team": "DAL",
       "pos": "D",
-      "gp": 203,
+      "gp": 204,
       "points": 22
     },
     {
@@ -5195,6 +5195,14 @@
       "points": 10
     },
     {
+      "id": 8475795,
+      "name": "Dylan McIlrath",
+      "team": "WSH",
+      "pos": "D",
+      "gp": 109,
+      "points": 9
+    },
+    {
       "id": 8482641,
       "name": "Matt Kiersted",
       "team": "MIN",
@@ -5203,12 +5211,12 @@
       "points": 9
     },
     {
-      "id": 8475795,
-      "name": "Dylan McIlrath",
-      "team": "WSH",
-      "pos": "D",
-      "gp": 109,
-      "points": 9
+      "id": 8475253,
+      "name": "Garrett Wilson",
+      "team": "PHI",
+      "pos": "L",
+      "gp": 89,
+      "points": 8
     },
     {
       "id": 8482094,
@@ -5224,14 +5232,6 @@
       "team": "BUF",
       "pos": "D",
       "gp": 60,
-      "points": 8
-    },
-    {
-      "id": 8475253,
-      "name": "Garrett Wilson",
-      "team": "PHI",
-      "pos": "L",
-      "gp": 89,
       "points": 8
     },
     {
