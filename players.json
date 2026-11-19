@@ -1,5 +1,5 @@
 {
-  "updatedAt": "Nov 18 23:59 UTC",
+  "updatedAt": "Nov 19 01:27 UTC",
   "count": 659,
   "players": [
     {
@@ -1979,19 +1979,19 @@
       "points": 222
     },
     {
-      "id": 8476393,
-      "name": "Nick Cousins",
-      "team": "OTT",
-      "pos": "C",
-      "gp": 742,
-      "points": 221
-    },
-    {
       "id": 8484144,
       "name": "Connor Bedard",
       "team": "CHI",
       "pos": "C",
       "gp": 234,
+      "points": 221
+    },
+    {
+      "id": 8476393,
+      "name": "Nick Cousins",
+      "team": "OTT",
+      "pos": "C",
+      "gp": 742,
       "points": 221
     },
     {
@@ -2099,19 +2099,19 @@
       "points": 206
     },
     {
-      "id": 8476312,
-      "name": "Josh Manson",
-      "team": "COL",
-      "pos": "D",
-      "gp": 718,
-      "points": 205
-    },
-    {
       "id": 8484801,
       "name": "Macklin Celebrini",
       "team": "SJS",
       "pos": "C",
       "gp": 174,
+      "points": 205
+    },
+    {
+      "id": 8476312,
+      "name": "Josh Manson",
+      "team": "COL",
+      "pos": "D",
+      "gp": 718,
       "points": 205
     },
     {
@@ -2179,19 +2179,19 @@
       "points": 198
     },
     {
-      "id": 8475208,
-      "name": "Brian Dumoulin",
-      "team": "LAK",
-      "pos": "D",
-      "gp": 807,
-      "points": 197
-    },
-    {
       "id": 8483515,
       "name": "Juraj Slafkovský",
       "team": "MTL",
       "pos": "L",
       "gp": 303,
+      "points": 197
+    },
+    {
+      "id": 8475208,
+      "name": "Brian Dumoulin",
+      "team": "LAK",
+      "pos": "D",
+      "gp": 807,
       "points": 197
     },
     {
@@ -2427,19 +2427,19 @@
       "points": 175
     },
     {
-      "id": 8475324,
-      "name": "Nick Jensen",
-      "team": "ANA",
-      "pos": "D",
-      "gp": 697,
-      "points": 174
-    },
-    {
       "id": 8483431,
       "name": "Logan Cooley",
       "team": "UTA",
       "pos": "C",
       "gp": 230,
+      "points": 174
+    },
+    {
+      "id": 8475324,
+      "name": "Nick Jensen",
+      "team": "ANA",
+      "pos": "D",
+      "gp": 697,
       "points": 174
     },
     {
@@ -2475,14 +2475,6 @@
       "points": 170
     },
     {
-      "id": 8476467,
-      "name": "Jamie Oleksiak",
-      "team": "VAN",
-      "pos": "D",
-      "gp": 779,
-      "points": 169
-    },
-    {
       "id": 8482720,
       "name": "Matthew Knies",
       "team": "CBJ",
@@ -2496,6 +2488,14 @@
       "team": "ANA",
       "pos": "C",
       "gp": 223,
+      "points": 169
+    },
+    {
+      "id": 8476467,
+      "name": "Jamie Oleksiak",
+      "team": "VAN",
+      "pos": "D",
+      "gp": 779,
       "points": 169
     },
     {
@@ -4491,19 +4491,19 @@
       "points": 33
     },
     {
-      "id": 8485702,
-      "name": "Maxim Shabanov",
-      "team": "MIN",
-      "pos": "R",
-      "gp": 66,
-      "points": 32
-    },
-    {
       "id": 8481563,
       "name": "Drew Helleson",
       "team": "ANA",
       "pos": "D",
       "gp": 134,
+      "points": 32
+    },
+    {
+      "id": 8485702,
+      "name": "Maxim Shabanov",
+      "team": "MIN",
+      "pos": "R",
+      "gp": 66,
       "points": 32
     },
     {
@@ -4635,19 +4635,19 @@
       "points": 28
     },
     {
-      "id": 8475413,
-      "name": "Justin Dowling",
-      "team": "NYR",
-      "pos": "C",
-      "gp": 158,
-      "points": 27
-    },
-    {
       "id": 8483476,
       "name": "Jonathan Lekkerimaki",
       "team": "VAN",
       "pos": "R",
       "gp": 60,
+      "points": 27
+    },
+    {
+      "id": 8475413,
+      "name": "Justin Dowling",
+      "team": "NYR",
+      "pos": "C",
+      "gp": 158,
       "points": 27
     },
     {
@@ -5091,14 +5091,6 @@
       "points": 13
     },
     {
-      "id": 8485512,
-      "name": "Tim Washe",
-      "team": "ANA",
-      "pos": "C",
-      "gp": 63,
-      "points": 13
-    },
-    {
       "id": 8481219,
       "name": "Jonathan Aspirot",
       "team": "BOS",
@@ -5112,6 +5104,14 @@
       "team": "VGK",
       "pos": "D",
       "gp": 60,
+      "points": 13
+    },
+    {
+      "id": 8485512,
+      "name": "Tim Washe",
+      "team": "ANA",
+      "pos": "C",
+      "gp": 63,
       "points": 13
     },
     {
@@ -5195,14 +5195,6 @@
       "points": 10
     },
     {
-      "id": 8475795,
-      "name": "Dylan McIlrath",
-      "team": "WSH",
-      "pos": "D",
-      "gp": 109,
-      "points": 9
-    },
-    {
       "id": 8482641,
       "name": "Matt Kiersted",
       "team": "MIN",
@@ -5211,12 +5203,12 @@
       "points": 9
     },
     {
-      "id": 8475253,
-      "name": "Garrett Wilson",
-      "team": "PHI",
-      "pos": "L",
-      "gp": 89,
-      "points": 8
+      "id": 8475795,
+      "name": "Dylan McIlrath",
+      "team": "WSH",
+      "pos": "D",
+      "gp": 109,
+      "points": 9
     },
     {
       "id": 8484305,
@@ -5224,6 +5216,14 @@
       "team": "BUF",
       "pos": "D",
       "gp": 60,
+      "points": 8
+    },
+    {
+      "id": 8475253,
+      "name": "Garrett Wilson",
+      "team": "PHI",
+      "pos": "L",
+      "gp": 89,
       "points": 8
     },
     {
