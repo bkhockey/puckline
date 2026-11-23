@@ -1,22 +1,5 @@
 {
-  "updatedAt": "Nov 23 17:15 UTC",
-  "count": 2,
-  "players": [
-    {
-      "id": 8476853,
-      "name": "Morgan Rielly",
-      "team": "TOR",
-      "pos": "D",
-      "gp": 972,
-      "points": 561
-    },
-    {
-      "id": 8483565,
-      "name": "Nick Blankenburg",
-      "team": "TOR",
-      "pos": "D",
-      "gp": 182,
-      "points": 59
-    }
-  ]
+  "updatedAt": "Nov 23 19:14 UTC",
+  "count": 0,
+  "players": []
 }
